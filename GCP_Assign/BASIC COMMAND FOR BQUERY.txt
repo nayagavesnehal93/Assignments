@@ -1,0 +1,120 @@
+Here are some of the **basic BigQuery commands** that you can use via the `bq` command-line tool:
+
+### 1. **Create a Dataset**
+   ```bash
+   bq mk --dataset project_id:dataset_id
+   ```
+   Example:
+   ```bash
+   bq mk --dataset my_project:my_dataset
+   ```
+
+### 2. **Create a Table**
+   ```bash
+   bq mk --table project_id:dataset_id.table_id schema
+   ```
+   Example:
+   ```bash
+   bq mk --table my_project:my_dataset.my_table id:INTEGER,name:STRING,salary:FLOAT
+   ```
+
+### 3. **List Datasets**
+   ```bash
+   bq ls --project_id
+   ```
+   Example:
+   ```bash
+   bq ls my_project
+   ```
+
+### 4. **List Tables in a Dataset**
+   ```bash
+   bq ls dataset_id
+   ```
+   Example:
+   ```bash
+   bq ls my_dataset
+   ```
+
+### 5. **View Schema of a Table**
+   ```bash
+   bq show --schema project_id:dataset_id.table_id
+   ```
+   Example:
+   ```bash
+   bq show --schema my_project:my_dataset.my_table
+   ```
+
+### 6. **Query Data**
+   ```bash
+   bq query --use_legacy_sql=false 'SELECT * FROM `project_id.dataset_id.table_id` LIMIT 10'
+   ```
+   Example:
+   ```bash
+   bq query --use_legacy_sql=false 'SELECT * FROM `my_project.my_dataset.my_table` LIMIT 10'
+   ```
+
+### 7. **Load Data into a Table**
+   ```bash
+   bq load --source_format=CSV project_id:dataset_id.table_id gs://bucket/path_to_file.csv schema
+   ```
+   Example:
+   ```bash
+   bq load --source_format=CSV my_project:my_dataset.my_table gs://my_bucket/my_file.csv id:INTEGER,name:STRING
+   ```
+
+### 8. **Export Data from a Table to GCS**
+   ```bash
+   bq extract --destination_format=CSV project_id:dataset_id.table_id gs://bucket/path_to_file.csv
+   ```
+   Example:
+   ```bash
+   bq extract --destination_format=CSV my_project:my_dataset.my_table gs://my_bucket/my_file.csv
+   ```
+
+### 9. **Delete a Dataset**
+   ```bash
+   bq rm --dataset project_id:dataset_id
+   ```
+   Example:
+   ```bash
+   bq rm --dataset my_project:my_dataset
+   ```
+
+### 10. **Delete a Table**
+   ```bash
+   bq rm --table project_id:dataset_id.table_id
+   ```
+   Example:
+   ```bash
+   bq rm --table my_project:my_dataset.my_table
+   ```
+
+### 11. **Copy a Table**
+   ```bash
+   bq cp project_id:dataset_id.source_table project_id:dataset_id.destination_table
+   ```
+   Example:
+   ```bash
+   bq cp my_project:my_dataset.source_table my_project:my_dataset.destination_table
+   ```
+
+### 12. **Show Details of a Dataset**
+   ```bash
+   bq show project_id:dataset_id
+   ```
+   Example:
+   ```bash
+   bq show my_project:my_dataset
+   ```
+
+### 13. **Show Details of a Table**
+   ```bash
+   bq show project_id:dataset_id.table_id
+   ```
+   Example:
+   ```bash
+   bq show my_project:my_dataset.my_table
+   ```
+
+These commands should help you perform common operations on datasets and tables in BigQuery. You can always use `bq help` for more detailed guidance on each command.
